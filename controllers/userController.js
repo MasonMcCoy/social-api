@@ -37,5 +37,14 @@ module.exports = {
         .then((result) => {
             res.json(result);
         });
+    },
+
+    addFriend(req, res) {
+        User.findOne({ id: req.params.UserID })
+        .then((user) => {
+            user.friends.push(req.params.friendID);
+            user.save();
+            res.json(user);
+        })
     }
 };
