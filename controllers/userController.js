@@ -9,7 +9,7 @@ module.exports = {
     },
 
     getUserByID(req, res) {
-        User.findOne({ id: req.params.UserID })
+        User.findOne({ id: req.params.userID })
         .then((user) => {
             !user
             ? res.status(404).json({ message: 'User does not exist' })
@@ -24,7 +24,7 @@ module.exports = {
     },
 
     updateUser(req, res) {
-        User.findOne({ id: req.params.UserID })
+        User.findOne({ id: req.params.userID })
         .then((user) => {
             user.username = req.body.username;
             user.save();
@@ -33,14 +33,14 @@ module.exports = {
     },
 
     deleteUser(req, res) {
-        User.deleteOne({ id: req.params.UserID })
+        User.deleteOne({ id: req.params.userID })
         .then((result) => {
             res.json(result);
         });
     },
 
     addFriend(req, res) {
-        User.findOne({ id: req.params.UserID })
+        User.findOne({ id: req.params.userID })
         .then((user) => {
             if (user.friends.includes(req.params.friendID)) {
                 res.json({ message: 'Friend already added' });
@@ -53,7 +53,7 @@ module.exports = {
     },
 
     removeFriend(req, res) {
-        User.findOne({ id: req.params.UserID })
+        User.findOne({ id: req.params.userID })
         .then((user) => {
             res.json(user)
             if (user.friends.includes(req.params.friendID)) {
