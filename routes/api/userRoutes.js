@@ -3,7 +3,8 @@ const {
     getUsers,
     getUserByID,
     createUser,
-    updateUser
+    updateUser,
+    deleteUser
 } = require('../../controllers/userController');
 
 // Get all users
@@ -19,7 +20,7 @@ router.route('/').post(createUser);
 router.route('/:userID').put(updateUser);
 
 // Remove user by ID
-router.route('/:userID').delete();
+router.route('/:userID').delete(deleteUser);
 
 // Add friend to user's friend list
 router.route('/:userId/friends/:friendId').post();

@@ -29,6 +29,13 @@ module.exports = {
             user.username = req.body.username;
             user.save();
             res.json(user);
-        })
+        });
+    },
+
+    deleteUser(req, res) {
+        User.deleteOne({ id: req.params.UserID })
+        .then((result) => {
+            res.json(result);
+        });
     }
 };
