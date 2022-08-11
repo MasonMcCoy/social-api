@@ -8,9 +8,27 @@ module.exports = {
         })
     },
 
+    getUserByID(req, res) {
+        User.findOne({ id: req.params.UserID })
+        .then((user) => {
+            !user
+            ? res.status(404).json({ message: 'User does not exist' })
+            : res.json(user);
+        })
+    },
+
     createUser(req, res) {
         User.create(req.body)
-            .then((user) => res.json(user))
-            .catch((error) => (res.status(500).json(error)));
+        .then((user) => res.json(user))
+        .catch((error) => (res.status(500).json(error)));
+    },
+
+    updateUser(req, res) {
+        User.findOne({ id: req.params.UserID })
+        .then((user) => {
+            user.username = req.body.username;
+            user.save();
+            res.json(user);
+        })
     }
 };
