@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 
-const thoughtSchema = new Schema(
+const thoughtcShema = new Schema(
     {
         thoughtText: {
             type: String,
@@ -24,10 +24,12 @@ const thoughtSchema = new Schema(
     }
 );
 
-userSchema.virtual('reactionCount').get(function () {
+thoughtcShema.virtual('reactionCount').get(function () {
     return this.reactions.length;
 });
 
-const Thought = model('thought', thoughtSchema);
+// TO-DO: Getter method for date format
+
+const Thought = model('thought', thoughtcShema);
 
 module.exports = Thought;
